@@ -1,0 +1,7 @@
+# Retro68 with its prebuilt PowerPC libraries patched for the weak-common
+# linker bug (see tools/xcoff_weakfix.py).
+FROM ghcr.io/autc04/retro68@sha256:cb4d58ea194f81e12e8c9b0735be4be9e65e7ccba58e00490d488af63c3cc33f
+COPY tools/xcoff_weakfix.py /usr/local/bin/xcoff_weakfix.py
+RUN cd /Retro68-build/toolchain && PATH=/Retro68-build/toolchain/bin:$PATH python3 /usr/local/bin/xcoff_weakfix.py \
+      powerpc-apple-macos/lib/libstdc++.a powerpc-apple-macos/lib/libsupc++.a powerpc-apple-macos/lib/libc.a \
+      powerpc-apple-macos/lib/libm.a powerpc-apple-macos/lib/libretrocrt.a lib/gcc/powerpc-apple-macos/16.1.0/libgcc.a

@@ -1,0 +1,9 @@
+# Host-side development image for the engine port: a current GCC for the
+# little-endian reference build, plus a big-endian PowerPC Linux cross
+# toolchain and user-mode emulation to shake out byte-order bugs quickly.
+FROM docker.io/library/debian:trixie-slim
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      build-essential cmake ninja-build pkg-config git ca-certificates python3 curl unzip ccache \
+      libpng-dev zlib1g-dev libzip-dev libicu-dev nlohmann-json3-dev libssl-dev libzstd-dev \
+      g++-powerpc-linux-gnu qemu-user gdb-multiarch \
+    && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,7 @@
+/upstream/
+/build/
+/third_party/*/
+/third_party/*.tar.gz
+__pycache__/
+# Game data packs: never commit them.
+*.pak
