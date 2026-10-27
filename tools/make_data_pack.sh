@@ -20,6 +20,18 @@ for sheet in g2 fonts palettes tracks; do
 done
 cp -r upstream/data/language upstream/data/scenario_patches upstream/data/shaders "$stage/"
 
+# The changelog the game shows on its first launch: this port's version, then OpenRCT2's.
+version=$(sed -n 's/^#define RCT_VERSION_\(MAJOR\|MINOR\|PATCH\) //p' compat/classic/ClassicVersion.h | paste -sd.)
+{
+  echo "OpenRCT2 for Mac OS 9, version $version"
+  echo "------------------------------------------------------------------------"
+  echo "- A native build for PowerPC Macs running Mac OS 9, based on OpenRCT2"
+  echo "  $(sed -n 's/^#define kOpenRCT2Version "\(.*\)"/\1/p' upstream/src/openrct2/Version.h) (revision $(python3 -c 'import json; print(json.load(open("upstream.lock.json"))["revision"][:9])')). OpenRCT2's own changes follow."
+  echo "- Project page: https://github.com/whiskthecat/openrct2-macos9"
+  echo
+  cat upstream/distribution/changelog.txt
+} > "$stage/changelog.txt"
+
 # Object definitions, at the version the pinned OpenRCT2 revision expects.
 url=$(python3 -c 'import json; print(json.load(open("upstream/assets.json"))["objects"]["url"])')
 sum=$(python3 -c 'import json; print(json.load(open("upstream/assets.json"))["objects"]["sha256"])')

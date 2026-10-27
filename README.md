@@ -49,6 +49,9 @@ the same state as the same park on a PC.
 3. **Copy everything to the Mac.** Use whatever you have: a FAT32 USB stick, a CD,
    FTP in binary mode or a file share. Decode `RCT.bin` with StuffIt Expander to get
    the **RCT** application. Put RCT and all the `.pak` files together in one folder.
+   If your Mac runs [AgentChat](https://github.com/whiskthecat/agentchat-macos9), a
+   coding agent can do this step and the next ones for you: see
+   [docs/install-with-an-agent.md](docs/install-with-an-agent.md).
 
 4. **Check the memory size** (only on Macs with less than about 384 MB). Select RCT,
    choose File → Get Info → Memory, and lower Preferred Size so it fits in your free
